@@ -47,7 +47,7 @@ Describe 'Atliso-BitLockerProtectionFix' {
     Mock Test-Path { $null -ne $global:AtlisoFve } -ParameterFilter { "$Path" -like '*Policies\Microsoft\FVE' }
     Mock Get-ItemProperty { [pscustomobject]$global:AtlisoFve } -ParameterFilter { "$Path" -like '*Policies\Microsoft\FVE' }
     Mock Get-CimInstance { [pscustomobject]@{ DriveLetter = 'C:' } }
-    Mock Invoke-CimMethod { [pscustomobject]@{ ReturnValue = 0; SuspendCount = 1 } }
+    Mock Invoke-CimMethod { [pscustomobject]@{ ReturnValue = 0; SuspendCount = 1 } } -RemoveParameterType InputObject
     Mock Get-Tpm { [pscustomobject]@{ TpmPresent = $true; TpmReady = $true } }
     Mock Resume-BitLocker { }
     Mock Add-BitLockerKeyProtector { }
